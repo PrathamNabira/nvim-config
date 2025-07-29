@@ -184,15 +184,19 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagn
 -- or just use <C-\><C-n> to exit terminal mode
 vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
 
--- Open vertical terminal (40 columns)
+-- Open vertical terminal (40 columns) in current file's directory
 vim.keymap.set('n', '<leader>ov', function()
+  local dir = vim.fn.expand '%:p:h' -- Get current file's directory
+  vim.cmd('lcd ' .. dir) -- Change local working directory
   vim.cmd 'rightbelow vertical 40split | terminal'
-end, { desc = 'Open vertical terminal (40 cols)' })
+end, { desc = 'Open vertical terminal in file dir (40 cols)' })
 
--- Open horizontal terminal (10 lines)
+-- Open horizontal terminal (10 lines) in current file's directory
 vim.keymap.set('n', '<leader>oh', function()
+  local dir = vim.fn.expand '%:p:h'
+  vim.cmd('lcd ' .. dir)
   vim.cmd 'belowright 10split | terminal'
-end, { desc = 'Open horizontal terminal (10 lines)' })
+end, { desc = 'Open horizontal terminal in file dir (10 lines)' })
 
 -- Resize vertical terminal (increase width by 5)
 vim.keymap.set('n', '<leader>rv+', ':vertical resize +5<CR>', { desc = 'Increase vertical terminal width' })
