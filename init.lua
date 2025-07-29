@@ -184,6 +184,28 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagn
 -- or just use <C-\><C-n> to exit terminal mode
 vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
 
+-- Open vertical terminal (40 columns)
+vim.keymap.set('n', '<leader>ov', function()
+  vim.cmd 'rightbelow vertical 40split | terminal'
+end, { desc = 'Open vertical terminal (40 cols)' })
+
+-- Open horizontal terminal (10 lines)
+vim.keymap.set('n', '<leader>oh', function()
+  vim.cmd 'belowright 10split | terminal'
+end, { desc = 'Open horizontal terminal (10 lines)' })
+
+-- Resize vertical terminal (increase width by 5)
+vim.keymap.set('n', '<leader>rv+', ':vertical resize +5<CR>', { desc = 'Increase vertical terminal width' })
+
+-- Resize vertical terminal (decrease width by 5)
+vim.keymap.set('n', '<leader>rv-', ':vertical resize -5<CR>', { desc = 'Decrease vertical terminal width' })
+
+-- Resize horizontal terminal (increase height by 2)
+vim.keymap.set('n', '<leader>rh+', ':resize +2<CR>', { desc = 'Increase horizontal terminal height' })
+
+-- Resize horizontal terminal (decrease height by 2)
+vim.keymap.set('n', '<leader>rh-', ':resize -2<CR>', { desc = 'Decrease horizontal terminal height' })
+
 -- TIP: Disable arrow keys in normal mode
 -- vim.keymap.set('n', '<left>', '<cmd>echo "Use h to move!!"<CR>')
 -- vim.keymap.set('n', '<right>', '<cmd>echo "Use l to move!!"<CR>')
@@ -894,7 +916,7 @@ require('lazy').setup({
       -- Load the colorscheme here.
       -- Like many other themes, this one has different styles, and you could load
       -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
-      vim.cmd.colorscheme 'tokyonight-night'
+      vim.cmd.colorscheme 'minicyan'
     end,
   },
 
